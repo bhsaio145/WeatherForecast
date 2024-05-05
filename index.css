@@ -61,6 +61,7 @@
 }
 .weather_week img{
     max-height: 5rem;
+    margin-top: .5rem;
 }
 .day_box{
     display: flex;
@@ -77,4 +78,28 @@
 }
 .day_box div{
     padding-bottom: .25rem;
+}
+
+/* F | C Convert button */
+.temperature_button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3rem;
+    cursor: pointer;
+}
+.F{
+    border-right: 1px solid;
+    padding-right: .5rem;
+    font-weight: bold;
+}
+.C{
+    border-left: 1px solid;
+    padding-left: .5rem;
+}
+.temp_C > .C{
+    font-weight: bold;
+}
+.temp_C > .F{
+    font-weight: normal;
 }
