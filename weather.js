@@ -1,5 +1,6 @@
 var apiURL = 'https://api.open-meteo.com/v1/forecast?latitude=40.754&longitude=-73.766&current=temperature_2m,precipitation,rain,showers,snowfall,weather_code,wind_speed_10m&hourly=temperature_2m,apparent_temperature,precipitation,weather_code,wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min&temperature_unit=fahrenheit&wind_speed_unit=mph&precipitation_unit=inch&timezone=America%2FNew_York'
 
+/* Accessing API */
 function getWeather(){
     fetch(apiURL)
     .then(response => response.json())
@@ -56,9 +57,14 @@ function setCurrentWeather({currentTemp, highTemp, lowTemp, windSpeed, iconCode}
 function setDailyWeather({iconCode, hightemp}){
     let dayIcon = document.getElementsByClassName("day_icon")
     let dayTemp = document.getElementsByClassName("day_box_temp")
+    let dayWeek = document.getElementsByClassName("day_box_day")
+    const date = new Date();
+    let day = date.getDay();
+    const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     for(let i = 0 ; i < dayIcon.length ; i++){
         dayIcon[i].src = iconToUrl(iconCode[i])
         dayTemp[i].textContent = hightemp[i]
+        dayWeek[i].textContent = daysOfWeek[(day+i)%8]
     }
 }
 
@@ -80,6 +86,5 @@ function addMapping(values, icon){
 function iconToUrl(iconCode){
     return `./weatherIcons/${Icon_Map.get(iconCode)}.svg`
 }
-
 
 getWeather();
